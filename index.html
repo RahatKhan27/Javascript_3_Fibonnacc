@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Javascript</title>
+  </head>
+  <body>
+
+
+    <script>
+  
+
+    function checkNumber() {
+                        var number = document.getElementById("number").value;
+                        if (!isNaN(number)) {
+                            if (isPrime(number)) {
+                                document.getElementById("result").innerHTML = number + " is prime!";
+                            }
+                            else {
+                                document.getElementById("result").innerHTML = number + " is not prime.";
+                            }
+                        }
+                        else {
+                            document.getElementById("result").innerHTML = "Please enter a number.";
+                        }
+                    }
+                    function isPrime(n) {
+
+                        
+                        if (n < 2) {
+                          return false
+                        }
+
+                        if (n != Math.round(n)) {
+                          return false
+                        }
+                       
+                        var isPrime = true;
+
+                        
+                        for (var i = 2; i <= Math.sqrt(n); i++) {
+                            if (n % i == 0) {
+                              isPrime = false
+                            }
+
+                        }
+
+
+                        return isPrime;
+
+                    }
+
+  
+
+    function show(){
+
+      var i, no, fact;
+      fact=1;
+      no=Number(document.getElementById("num").value);
+      for(i=1; i<=no; i++)
+      {
+        fact= fact*i;
+      }
+      document.getElementById("answer").value= fact;
+      }
+
+
+    
+    function add(a, b) {
+   while (a.length < b.length) a.unshift(0);
+   while (a.length > b.length) b.unshift(0);
+   var carry = 0,
+       sum = [];
+   for (var i = a.length - 1; i >= 0; i--) {
+       var s = a[i] + b[i] + carry;
+       if (s >= 10) {
+           s = s - 10;
+           carry = 1;
+       } else {
+           carry = 0;
+       }
+       sum.unshift(s);
+   }
+   if (carry) sum.unshift(carry);
+   return sum;
+}
+
+function fib(n) {
+   var f1 = [0];
+   var f2 = [1];
+
+   while (n--) {
+       var f3 = add(f1, f2);
+       f1 = f2;
+       f2 = f3;
+   }
+   return f1.join("");
+}
+
+document.getElementById("btn").onclick = function () {
+       var inputnum = parseFloat(document.getElementById("inputtext").value);
+       document.getElementById("ID").innerHTML = fib(inputnum).toString();
+};
+
+    </script>
+
+
+    <h1>Prime Number Check</h1>
+
+                <input id="number" value="0" size="8" onclick="this.select()" />
+                <input type="button" value="Check" onclick="checkNumber()" />
+                <p id="result">
+                    Enter a number
+                </p>
+
+    <!-- factorial -->
+
+    <h1>Factorial</h1>
+
+   <p> Enter Num: </p> <input id="num">
+<button onclick="show()">Factorial</button>
+<input id="answer">
+
+
+<!-- fibonacci -->
+
+<h1>Fibonnacci</h1>
+<input type="text" id="inputtext">
+<br><br>
+<input type="button" value="Find out" id="btn">
+<br><br>
+<b id="ID"></b>
+  </body>
+</html>
